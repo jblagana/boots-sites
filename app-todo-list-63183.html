@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>To-Do List</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f0f0f0;padding:20px;}
+#app{max-width:400px;margin:auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+input[type=text]{width:70%;padding:8px;}
+button{padding:8px 12px;margin-left:5px;}
+ul{list-style:none;padding:0;}
+li{display:flex;align-items:center;justify-content:space-between;padding:5px 0;}
+.completed{text-decoration:line-through;color:#888;}
+</style>
+</head>
+<body>
+<div id="app">
+<h2>To-Do List</h2>
+<input id="taskInput" type="text" placeholder="New task..." />
+<button onclick="addTask()">Add</button>
+<ul id="taskList"></ul>
+</div>
+<script>
+function addTask(){
+  const input=document.getElementById('taskInput');
+  const text=input.value.trim();
+  if(!text) return;
+  const li=document.createElement('li');
+  const span=document.createElement('span');
+  span.textContent=text;
+  const check=document.createElement('button');
+  check.textContent='✓';
+  check.onclick=()=>{span.classList.toggle('completed');};
+  const del=document.createElement('button');
+  del.textContent='✕';
+  del.onclick=()=>{li.remove();};
+  li.appendChild(span);
+  li.appendChild(check);
+  li.appendChild(del);
+  document.getElementById('taskList').appendChild(li);
+  input.value='';
+}
+</script>
+</body>
+</html>
